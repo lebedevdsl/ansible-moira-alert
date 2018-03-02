@@ -11,8 +11,8 @@ Path to packages needed
 Role Variables
 --------------
 
-Naming is as such
-<namespace>_<component>_variable
+Naming: 
+``` <namespace>_<component>_variable ```
 
 Most of them are selfexplanatory. Refer to moira documentation https://moira.readthedocs.io/en/latest/installation/configuration.html.  Defaults listed as in template.
 
