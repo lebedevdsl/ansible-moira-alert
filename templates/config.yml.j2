@@ -1,0 +1,47 @@
+redis:
+  host: "{{ moira_redis_host | default('localhost') }}"
+  port: {{ moira_redis_port | default(6379) }}
+
+graphite:
+  uri: "{{ moira_graphite_host }}"
+  prefix: "{{ moira_graphite_prefix | default('moira') }}"
+  interval: {{ moira_graphite_interval | default(60) }}
+
+cache:
+  log_file: "{{ moira_cache_log_file | default('/var/log/cache/cache.log') }}"
+  listen: "{{ moira_cache_listen | default(':2003') }}"
+  retention-config: "{{ moira_cache_retentions | default('/etc/moira/storage-schemas.conf') }}"
+  pid: "{{ moira_cache_pidfile | default('/var/run/moira/moira-cache.pid') }}"
+
+worker:
+  log_dir: "{{ moira_worker_log_dir | default('/var/log/moira/worker') }}"
+  log_level: "{{ moira_worker_log_level | default('info') }}"
+
+api:
+  port: {{ moira_api_port | default(8081) }}
+  listen: "{{ moira_api_listen | default('127.0.0.1') }}"
+
+
+checker:
+  nodata_check_interval: {{ moira_checker_nodata_interval | default(60) }}
+  check_interval: {{ moira_checker_check_interval | default(5) }}
+  metrics_ttl: {{ moira_checker_metrics_ttl | default(3600) }}
+  stop_checking_interval: {{ moira_checker_stop_checking_interval | default(30) }}
+
+front:
+  uri: "{{ moira_web_uri | default('http://localhost') }}"
+
+notifier:
+  log_file: "{{ moira_notifier_log_file | default('/var/log/moira/notifier/notifier.log') }}"
+  log_level: "{{ moira_notifier_log_level | default('debug') }}"
+  log_color: "{{ moira_notifier_log_color | default('true') }}"
+  sender_timeout: "{{ moira_notifier_sender_timeout | default('10s0ms') }}"
+  resending_timeout: "{{ moira_notifier_resending_timeout | default('24:00') }}"
+  senders: 
+    - type: mail
+      smtp_host: "{{ moira_sender_mail_smtp_host | default('smtp.example.org') }}"
+      smtp_port: "{{ moira_sender_mail_smtp_port | default(587) }}"
+      smtp_pass: "{{ moira_sender_mail_smtp_pass | default('') }}"
+      smtp_user: "{{ moira_sender_mail_smtp_user | default('') }}"
+      mail_from: "{{ moira_sender_mail_mail_from | default('moira@gmail.com') }}"
+      insecure_tls: "{{ moira_sender_mail_insecure_tls | default('false') }}"

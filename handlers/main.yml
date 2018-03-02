@@ -1,0 +1,28 @@
+---
+# handlers file for lebedevdsl.moira-alert
+- name: restart cache
+  command: systemctl restart moira-cache
+- name: enable cache
+  command: systemctl enable moira-cache
+- name: start cache
+  command: systemctl start moira-cache
+- name: restart notifier
+  command: systemctl restart moira-notifier
+- name: enable notifier
+  command: systemctl enable moira-notifier
+- name: start notifier
+  command: systemctl start moira-notifier
+- name: restart api
+  command: systemctl restart moira-api
+- name: enable api
+  command: systemctl enable moira-api
+- name: start api
+  command: systemctl start moira-api
+- name: restart checker
+  command: systemctl restart moira-checker
+- name: enable checker
+  command: systemctl enable moira-checker
+- name: start checker
+  command: systemctl start moira-checker
+- name: systemctl daemon-reload
+  command: systemctl daemon-reload

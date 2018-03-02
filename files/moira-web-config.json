@@ -1,0 +1,15 @@
+{
+        "api_url": "/api",
+        "contacts": [
+                {"type": "mail", "validation": "^.+@.+\\..+$", "icon": "email"}
+        ],
+        "paging": {
+                "size": 20
+        },
+        "event_history":{
+                "paging": {
+                        "size": 100
+                }
+        }
+}
+

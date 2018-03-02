@@ -1,0 +1,14 @@
+[Unit]
+Description=moira-api - Moira API service
+After=network-online.target
+
+[Service]
+ExecStart=/bin/moira-api -c /etc/moira/config.yml
+User=moira
+Group=moira
+PIDFile=/var/run/moira/moira-api.pid
+Restart=on-failure
+ExecReload=/bin/kill -USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target

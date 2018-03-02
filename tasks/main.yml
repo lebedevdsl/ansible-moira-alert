@@ -1,0 +1,51 @@
+---
+# tasks file for lebedevdsl.moira-alert
+- name: Install requirements
+  yum:
+    name: python-pip, python-devel
+  tags: requirements
+
+- name: Install moira packages
+  yum:
+    name: "{{ item }}"
+    state: present
+    validate_certs: no
+  with_items: 
+  - "{{ moira_web_package }}"
+  - "{{ moira_cache_package }}"
+  - "{{ moira_notifier_package }}"
+
+- name: Install config.json
+  copy:
+    src: files/moira-web-config.json
+    dest: /var/www/moira/config.json
+
+- name: Install systemd units
+  copy:
+    src: "files/{{ item }}.systemd"
+    dest: "/usr/lib/systemd/system/{{ item }}"
+  notify: ["systemctl daemon-reload"]
+  with_items:
+  - moira-cache.service
+  - moira-api.service
+  - moira-notifier.service
+  - moira-checker.service
+
+- name: Install moira packages - worker
+  pip:
+    name: "{{ moira_worker_package }}"
+    state: present
+  tags: moira-worker
+
+- name: Configure moira
+  template: 
+    src: templates/config.yml.j2
+    dest: /etc/moira/cache.yml
+  notify: ["restart cache","restart notifier", "restart api"]
+
+- name: Enable and start services
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  with_items: ["moira-api","moira-cache","moira-notifier","moira-checker"]

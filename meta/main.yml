@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Dmitry Lebedev
+  description: Install/configure moira-alert (single host)
+
+  # change as appropriate
+  license: MIT
+
+  min_ansible_version: 2.0
+
+  galaxy_tags:
+  - monitoring
+  - moira
+  - redhat
+
+dependencies: []

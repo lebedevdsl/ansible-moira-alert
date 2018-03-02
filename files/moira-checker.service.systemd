@@ -1,0 +1,14 @@
+[Unit]
+Description=moira-checker - Moira checker service
+After=network-online.target
+
+[Service]
+ExecStart=/bin/moira-checker -c /etc/moira/config.yml
+User=moira
+Group=moira
+PIDFile=/var/run/moira/moira-checker.pid
+Restart=on-failure
+ExecReload=/bin/kill -USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target

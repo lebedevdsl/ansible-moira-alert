@@ -1,22 +1,5 @@
-lebedevdsl.moira-alert
-=========
-
-
-
-Requirements
-------------
-
-Path to packages needed
-
-Role Variables
---------------
-
-Naming is as such
-<namespace>_<component>_variable
-
-Most of them are selfexplanatory. Refer to moira documentation https://moira.readthedocs.io/en/latest/installation/configuration.html.  Defaults listed as in template.
-
-```
+---
+# defaults file for lebedevdsl.moira-alert
 moira_web_package: moira-web
 moira_cache_package: moira-cache
 moira_notifier_package: moira-notifier
@@ -59,28 +42,3 @@ moira_sender_mail_smtp_pass: ''
 moira_sender_mail_smtp_user: ''
 moira_sender_mail_mail_from: 'moira@gmail.com'
 moira_sender_mail_insecure_tls: 'false'
-
-```
-
-
-Dependencies
-------------
-
-None
-
-Example Playbook
-----------------
-
-    - hosts: servers
-      roles:
-         - { role: lebedevdsl.moira-alert, become: yes }
-
-License
--------
-
-MIT
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
